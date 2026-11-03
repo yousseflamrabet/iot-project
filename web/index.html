@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="fr"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>SME · Marsa Maroc — Simulation</title><link rel="stylesheet" href="/style.css"></head>
+<body>
+<div class="app">
+<aside class="sidebar">
+  <div class="brand"><div class="brand-mark">⚡</div><div><strong>SME <span>Marsa Maroc</span></strong><small>PORT D’AGADIR · SIMULATION</small></div></div>
+  <div class="nav-label">ESPACE DE TRAVAIL</div>
+  <nav id="nav">
+    <button class="nav-item active" data-page="overview"><span class="nav-icon">▦</span> Vue d’ensemble</button>
+    <button class="nav-item" data-page="posts"><span class="nav-icon">▤</span> Postes électriques</button>
+    <button class="nav-item" data-page="meters"><span class="nav-icon">◉</span> Compteurs</button>
+    <button class="nav-item" data-page="analytics"><span class="nav-icon">⌁</span> Analyse énergétique</button>
+    <button class="nav-item" data-page="alerts"><span class="nav-icon">♧</span> Alertes <span class="nav-count" id="navAlerts">0</span></button>
+    <button class="nav-item" data-page="reports"><span class="nav-icon">▣</span> Rapports et exports</button>
+    <a class="nav-item lab-link" href="/laboratoire.html" target="_blank" rel="noopener"><span class="nav-icon">⚡</span> Tableau électrique virtuel <span class="nav-count">↗</span></a>
+    <button class="nav-item" data-page="settings"><span class="nav-icon">⚙</span> Système</button>
+  </nav>
+  <div class="side-bottom"><span class="live-dot"></span> Collecte Modbus simulée <small>Prototype pédagogique · Pas de données réelles</small></div>
+</aside>
+<main class="main">
+<header class="topbar"><div class="crumb">SUPERVISION ÉNERGÉTIQUE <span>/</span> <span id="crumbName">Vue d’ensemble</span></div><div class="top-actions"><span class="pill"><span class="live-dot"></span> SIMULATION ACTIVE</span><span id="clock" class="clock"></span><span class="avatar">DEMO</span></div></header>
+<div class="content"><div id="statusMessage" class="notice"><span>ⓘ</span> Les mesures affichées sont entièrement synthétiques. Cette application ne communique avec aucun équipement réel de Marsa Maroc.</div><div id="page" aria-live="polite"></div>
+<footer>SME · Démonstrateur IoT local basé sur le CPS 12/DEPA/2026 <span>Version 2.1 · Python / Modbus TCP / SQLite</span></footer></div>
+</main></div>
+<div class="meter-dialog-backdrop" id="meterModal" hidden>
+  <section class="meter-dialog" role="dialog" aria-modal="true" aria-labelledby="detailTitle">
+    <div class="meter-dialog-header">
+      <div><span class="eyebrow">FICHE COMPTEUR · MESURES SIMULÉES</span><h2 id="detailTitle">Compteur</h2><p id="detailOrigin" class="description"></p></div>
+      <button class="btn" id="detailClose" type="button">Fermer ✕</button>
+    </div>
+    <div class="meter-dialog-body">
+      <div class="detail-status-line"><span id="detailState" class="badge">—</span><span id="detailFreshness" class="description">Chargement…</span></div>
+      <div id="detailMetrics" class="detail-grid"></div>
+      <h3>Historique de puissance (kW)</h3><p id="detailSamples" class="description"></p>
+      <div class="chart-wrap"><canvas id="detailChart" aria-label="Historique de la puissance"></canvas></div>
+      <p id="detailProtocol" class="description"></p>
+    </div>
+  </section>
+</div>
+<div id="toast" class="toast"></div><script src="/app.js"></script></body></html>

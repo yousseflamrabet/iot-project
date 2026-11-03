@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#071421">
+  <title>Laboratoire IoT — Armoire électrique virtuelle</title>
+  <link rel="stylesheet" href="/laboratoire.css">
+</head>
+<body>
+<div class="layout">
+  <aside class="sidebar">
+    <div class="brand"><div class="brand-icon">⚡</div><div><strong>SME <span>LAB</span></strong><small>MARSA MAROC · DÉMO</small></div></div>
+    <div class="side-heading">POSTES ÉLECTRIQUES</div>
+    <nav id="postNav" aria-label="Choix du poste électrique"></nav>
+    <div class="side-end"><span class="live-indicator"></span> SIMULATION LOCALE
+      <p>Environnement pédagogique isolé. Aucune commande vers des équipements réels.</p>
+    </div>
+  </aside>
+  <main class="workspace">
+    <header class="topbar">
+      <div class="breadcrumb">SIMULATEUR / <strong>ARMOIRE ÉLECTRIQUE</strong></div>
+      <div class="rightbar"><span class="clock" id="clock"></span><a class="dashboard-link" href="/" target="_blank" rel="noopener">Ouvrir la supervision <span aria-hidden="true">↗</span></a></div>
+    </header>
+    <div class="content">
+      <div class="hero">
+        <div>
+          <div class="eyebrow"><span class="live-indicator"></span> LABORATOIRE IoT · TEMPS QUASI RÉEL</div>
+          <h1>Tableau électrique <em>virtuel</em></h1>
+          <p>Pilote des équipements fictifs et observe l'impact sur les mesures Modbus TCP/IP reçues par le système de supervision.</p>
+        </div>
+        <div class="sim-badge"><span>100 %</span> SIMULÉ</div>
+      </div>
+      <div class="metrics" id="metrics"></div>
+      <div class="main-grid">
+        <section class="cabinet panel">
+          <div class="panel-header"><div><span class="eyebrow">SYNOPTIQUE INDUSTRIEL</span><h2 id="cabinetTitle">Armoire TGBT · PT Y</h2><p>Interrupteurs de charges et relevés directement reliés aux compteurs virtuels</p></div><div class="status online" id="gatewayStatus"><i></i> MODBUS TCP ACTIF</div></div>
+          <div class="cabinet-shell">
+            <div class="cabinet-banner"><div><span class="electric-icon">ϟ</span><strong>ARRIVÉE ÉLECTRIQUE</strong><small>Alimentation triphasée · 400 / 230 V (fictive)</small></div><div class="unit-badge">TGBT / <span id="postShort">PT Y</span></div></div>
+            <div class="bus-container"><div class="vertical-wire"></div><div class="bus-bar"><span>JEU DE BARRES PRINCIPAL</span></div></div>
+            <div class="circuits" id="circuits" aria-label="Circuits électriques simulés"></div>
+            <div class="cabinet-floor"><span><i></i> ÉTAT DES DISJONCTEURS : <strong id="enabledCount">—</strong></span><span>Commande purement logicielle</span></div>
+          </div>
+          <div class="cabinet-foot"><span class="foot-icon">ⓘ</span> Active une charge pour voir augmenter sa puissance, son courant et l'énergie mesurée. La commutation est simulée, jamais physique.</div>
+        </section>
+        <div class="right-stack">
+          <section class="panel scenario-panel">
+            <div class="panel-header"><div><span class="eyebrow">MODES PRÉCONFIGURÉS</span><h2>Scénarios d'exploitation</h2><p>Appliquer un état à tous les postes d'un clic.</p></div></div>
+            <div id="scenarios" class="scenario-list"></div>
+          </section>
+          <section class="panel telemetry-panel">
+            <div class="panel-header"><div><span class="eyebrow">RÉCEPTION DES DONNÉES</span><h2>Mesures Modbus</h2><p id="meterHeader">Sélectionne un circuit électrique.</p></div><span class="status online"><i></i> FC03</span></div>
+            <div id="telemetry" class="telemetry"></div>
+            <div class="path-flow"><span>COMMANDE</span><b>→</b><span>MODBUS TCP</span><b>→</b><span>SQLITE</span><b>→</b><span>DASHBOARD</span></div>
+          </section>
+        </div>
+      </div>
+      <div class="bottom-grid">
+        <section class="panel trend-panel"><div class="panel-header"><div><span class="eyebrow">SUIVI ÉNERGÉTIQUE</span><h2>Évolution de la puissance contrôlée</h2><p>Valeurs synthétiques, actualisation toutes les 2 secondes</p></div><span id="postTrendValue" class="trend-kw">— kW</span></div><div class="trend-box"><canvas id="trend" aria-label="Graphique de puissance simulée"></canvas></div></section>
+        <section class="panel events-panel"><div class="panel-header"><div><span class="eyebrow">TRAÇABILITÉ</span><h2>Historique des commandes</h2><p>Actions exécutées depuis le laboratoire</p></div></div><div id="events" class="events-list"></div></section>
+      </div>
+      <footer><span>SME LAB · Démonstrateur pédagogique inspiré du CPS 12/DEPA/2026</span><span>Aucun lien avec une installation réelle · Non conforme pour mise en production</span></footer>
+    </div>
+  </main>
+</div>
+<div role="status" class="toast" id="toast"></div>
+<script src="/laboratoire.js"></script>
+</body>
+</html>
